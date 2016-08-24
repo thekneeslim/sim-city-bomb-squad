@@ -12,15 +12,16 @@ document.addEventListener("DOMContentLoaded", function() {
 
 
   // GAME START
-  gameStart();
+  if (GAMESTATUS = true) {
+    gameStart();
+  } else {
+    // RESTARTING GAME
+    document.getElementsbyClass("button").addEventListener("click", restartGame());
+  }
 
   // FUNCTION TO START THE GAME
   function gameStart() {
-    if (GAMESTATUS = true) {
     pushWiresNeeded();
-    } else {
-      document.getElementsbyClass("button").addEventListener("click", restartGame);
-    }
   }
 
 
@@ -53,44 +54,47 @@ document.addEventListener("DOMContentLoaded", function() {
   }
 
   function identifyWire(e) {
-    var METALWIRES = e.target;
-    id = METALWIRES.id;
-    if (id === "blue") {
-        document.getElementById("blue").style.backgroundImage = "url('img/cut-blue-wire.png')";
-        console.log("Changing blue to cut");
+    if (GAMESTATUS = true) {
+      var METALWIRES = e.target;
+      id = METALWIRES.id;
+      if (id === "blue") {
+          document.getElementById("blue").style.backgroundImage = "url('img/cut-blue-wire.png')";
+          console.log("Changing blue to cut");
 
-    }   else if (id === "green") {
-        console.log("Changing green to cut");
-        document.getElementById("green").style.backgroundImage = "url('img/cut-green-wire.png')";
+      }   else if (id === "green") {
+          console.log("Changing green to cut");
+          document.getElementById("green").style.backgroundImage = "url('img/cut-green-wire.png')";
 
-    }  else if (id === "red") {
-        document.getElementById("red").style.backgroundImage = "url('img/cut-red-wire.png')";
-        console.log("Changing red to cut");
+      }  else if (id === "red") {
+          document.getElementById("red").style.backgroundImage = "url('img/cut-red-wire.png')";
+          console.log("Changing red to cut");
 
-    } else if (id === "white") {
-        document.getElementById("white").style.backgroundImage = "url('img/cut-white-wire.png')";
-        console.log("Changing white to cut");
+      } else if (id === "white") {
+          document.getElementById("white").style.backgroundImage = "url('img/cut-white-wire.png')";
+          console.log("Changing white to cut");
 
-    } else if (id === "yellow") {
-        document.getElementById("yellow").style.backgroundImage = "url('img/cut-yellow-wire.png')";
-        console.log("Changing yellow to cut");
+      } else if (id === "yellow") {
+          document.getElementById("yellow").style.backgroundImage = "url('img/cut-yellow-wire.png')";
+          console.log("Changing yellow to cut");
+      }
+      CUTWIRES.push(id);
+      console.log("HELP:", CUTWIRES);
+      checkDefuse();
     }
-    CUTWIRES.push(id);
-    checkDefuse();
   }
 
   // CHECKING EXPLOSION
-  function checkExplosion() {
-    if(id !== runWiresNeeded()) {
-      CUTWIRES.push(id);
-
-      checkDefuse();
-
-    }
-    else {
-      runExplosion();
-    }
-  }
+  // function checkExplosion() {
+  //   if(id !== runWiresNeeded()) {
+  //     CUTWIRES.push(id);
+  //
+  //     checkDefuse();
+  //
+  //   }
+  //   else {
+  //     runExplosion();
+  //   }
+  // }
 
   function runWiresNeeded() {
     for (x=0; x < WIRESNEEDED.length; x++) {
@@ -112,14 +116,15 @@ document.addEventListener("DOMContentLoaded", function() {
   function checkDefuse() {
     if (compareArrays() === true) {
       bombDefused();
-    } else {
-      checkExplosion();
     }
+    // else {
+    //   checkExplosion();
+    // }
   }
 
-  function compareArrays(WIRESNEEDED, CUTWIRES) {
-    console.log("CUTWIRES:", CUTWIRES);
-    console.log("WIRESNEEDED:", WIRESNEEDED);
+  function compareArrays() {
+    // console.log("CUTWIRES:", CUTWIRES);
+    // console.log("WIRESNEEDED:", WIRESNEEDED);
     var sortedCUTWIRES = CUTWIRES.sort();
     var sortedWIRESNEEDED = WIRESNEEDED.sort();
 
@@ -127,10 +132,12 @@ document.addEventListener("DOMContentLoaded", function() {
       return false;
     }
     for (var i = 0; i < CUTWIRES.length; i++) {
-      if (sortedWIRESNEEDED[i] !== sortedCUTWIRES[i]);
+      if (sortedCUTWIRES[i] !== sortedWIRESNEEDED[i]) {
       return false;
+      } else {
+        return true;
+      }
     }
-    return true;
   }
 
   function bombDefused() {
