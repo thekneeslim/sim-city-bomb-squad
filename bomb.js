@@ -11,8 +11,13 @@ var GAMESTATUS = true;
 var METALWIRES = document.getElementsByClassName("unCutWires");
 
 // GAME START
-pushWiresNeeded();
 gameStart();
+
+// FUNCTION TO START THE GAME
+function gameStart() {
+  pushWiresNeeded();
+  clickedWires();
+}
 
 
 // FOR LOOP TO DETERMINE ALL WIRES
@@ -32,7 +37,7 @@ function wiresRequiredToCut(y) {
 }
 
 //IDENTIFYING WHICH WIRE WAS CLICKED
-function gameStart() {
+function clickedWires() {
   for (var j = 0; j < UNCUTWIRES.length; j++) {
     var METALWIRES = METALWIRES[j];
     METALWIRES.addEventListener("click", identifyWire);
