@@ -12,17 +12,19 @@ document.addEventListener("DOMContentLoaded", function() {
 
 
   // GAME START
-  if (GAMESTATUS = true) {
-    gameStart();
-  }
+  gameStart()
 
-  // FUNCTION TO START THE GAME
   function gameStart() {
     pushWiresNeeded();
+    clock();
   }
 
   // RESETING GAME
-  document.getElementById("reset").addEventListener("click", restartGame());
+  // if(GAMESTATUS = true) {
+  //   document.getElementById("reset").addEventListener("click", warning());
+  // } else {
+    document.getElementById("reset").addEventListener("click", restartGame());
+  // }
 
   function restartGame() {
     //RESET TIMER
@@ -37,6 +39,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
   // FOR LOOP TO DETERMINE ALL WIRES
   function pushWiresNeeded() {
+    GAMESTATUS = true;
     for(var i =0; i < UNCUTWIRES.length; i++) {
       wiresRequiredToCut(UNCUTWIRES[i]);
       clickedWires();
@@ -56,7 +59,6 @@ document.addEventListener("DOMContentLoaded", function() {
 
   //IDENTIFYING WHICH WIRE WAS CLICKED
   function clickedWires() {
-    if (GAMESTATUS === true)
     for (var j = 0; j < UNCUTWIRES.length; j++) {
       var METALWIRE = METALWIRES[j];
       METALWIRE.addEventListener("click", identifyWire);
@@ -112,7 +114,7 @@ document.addEventListener("DOMContentLoaded", function() {
         }
       }
       if (available === 0) {
-        runExplosion();
+        setTimeout(runExplosion(), 750);
       }
     }
   }
@@ -135,25 +137,64 @@ document.addEventListener("DOMContentLoaded", function() {
 
   function bombDefused() {
     document.getElementById("timer").style.color = "green";
-    // CLEARTIMEOUT
+    GAMESTATUS = false;
+    clearInterval(interval);
     alert("YOU HAVE SUCCESSDULLY DEFUSED THE BOMB!!!");
   }
-    //   else {
-    //   clickedWires();
-    // }
 
     // EXPLOSION CODE
       function runExplosion() {
         document.getElementById("backImage").style.backgroundImage = "url('img/explosion.jpg')";
         GAMESTATUS = false;
-        //STOP TIMER
+        clearInterval(interval);
         //PREVENT WIRES FROM BEING CUT
-        //CHANGE BACKGROUND
-
       }
-
+// WARNING MESSAGE
   function warning() {
     alert("You cannot restart the game yet!");
   }
+
+  function clock(){
+
+	var a = 3;
+	var b = 0;
+	var c = 0;
+	var d = 0;
+
+	countDown(a,b,c,d);
+
+}
+
+function countDown(d3,d2,d1,d0){
+
+ time = document.getElementById("timer");
+ interval = setInterval(count,10);
+
+ function count(){
+   if((d3===0 && d2===0 && d1===0 && d0===0)) {
+     setTimeout(runExplosion(), 750);
+   } else {
+      if(d0>0) {
+          d0--;
+      } else {
+          d0 = 9;
+          if(d1>0){
+            d1--;
+            } else {
+                d1=9;
+                if(d2>0){
+                    d2--;
+                } else {
+                    d2=9;
+                    if(d3>0){
+                      d3--;
+                    }
+                }
+            }
+          }
+      }
+     time.textContent = d3.toString() + d2.toString()+":"+d1.toString() + d0.toString();
+   }
+ }
 
 });
