@@ -2,7 +2,7 @@ console.log("javascript running");
 
 document.addEventListener("DOMContentLoaded", function() {
   console.log("DOM loaded");
-});
+
 
 var UNCUTWIRES = ["blue", "green", "red", "white", "yellow"];
 var CUTWIRES = [];
@@ -24,7 +24,7 @@ function gameStart() {
 function pushWiresNeeded() {
   for(var i =0; i < UNCUTWIRES.length; i++) {
     wiresRequiredToCut(UNCUTWIRES[i]);
-    console.log(WIRESNEEDED)
+    // console.log(WIRESNEEDED);
   }
 }
 
@@ -39,18 +39,22 @@ function wiresRequiredToCut(y) {
 //IDENTIFYING WHICH WIRE WAS CLICKED
 function clickedWires() {
   for (var j = 0; j < UNCUTWIRES.length; j++) {
-    var METALWIRES = METALWIRES[j];
-    METALWIRES.addEventListener("click", identifyWire);
+    console.log(METALWIRES[j]);
+    var METALWIRE = METALWIRES[j];
+    METALWIRE.addEventListener("click", identifyWire);
   }
 }
 
 function identifyWire(e) {
   var METALWIRES = e.target;
+  console.log(METALWIRES);
   var id = METALWIRES.id;
 
+  console.log(id);
+
   if (id === "uncutBlue") {
-    document.getElementById("uncutBlue").style.backgroundImage = "url('img/cut-blue-wire.png')";
-    console.log("Changing blue to cut");
+      document.getElementById("uncutBlue").style.backgroundImage = "url('img/cut-blue-wire.png')";
+      console.log("Changing blue to cut");
 
   }   else if (id === "uncutGreen") {
       console.log("Changing green to cut");
@@ -70,3 +74,4 @@ function identifyWire(e) {
   }
   console.log(METALWIRES.textContent);
 }
+});
