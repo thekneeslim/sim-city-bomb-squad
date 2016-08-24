@@ -1,4 +1,4 @@
-body {
+#backImage {
   background-image: url("img/simcity.jpg");
   /*background-image: url("img/explosion.jpg");*/
 }
@@ -42,50 +42,27 @@ body {
   left: 2px;
 }
 
-/*#cutBlue {
-  background-image: url("img/cut-blue-wire.png");
-  left: 3px;
-}*/
-
 #green {
   background-image: url("img/uncut-green-wire.png");
   left: 33px;
 }
-
-/*#cutGreen {
-  background-image: url("img/cut-green-wire.png");
-  left: 33px;
-}*/
 
 #red {
   background-image: url("img/uncut-red-wire.png");
   left: 63px;
 }
 
-/*#cutRed {
-  background-image: url("img/cut-red-wire.png");
-  left: 63px;
-}*/
-
 #white {
   background-image: url("img/uncut-white-wire.png");
   left: 93px;
 }
 
-/*#cutWhite{
-  background-image: url("img/cut-white-wire.png");
-  left: 93px;
-}*/
 
 #yellow {
   background-image: url("img/uncut-yellow-wire.png");
   left: 123px;
 }
 
-/*#cutYellow {
-  background-image: url("img/cut-yellow-wire.png");
-  left: 123px;
-}*/
 
 .reset {
   width: 150px;
