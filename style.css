@@ -1,0 +1,96 @@
+body {
+  background-image: url("img/simcity.jpg");
+  /*background-image: url("img/explosion.jpg");*/
+}
+
+.blackBox {
+  height: 350px;
+  width: 200px;
+  background-color: black;
+  margin: auto;
+  margin-top: 15%;
+  position:relative;
+}
+
+#timer {
+  width: 150px;
+  height:30px;
+  color: red;
+  font-size: 25px;
+  position:absolute;
+  margin: 15px 25px 25px 25px;
+  text-align: center;
+}
+
+  .wireContainer {
+  width: 150px;
+  height: 260px;
+  position:absolute;
+  top: 50px;
+  left: 25px;
+}
+
+.cutWires, .unCutWires {
+  position: absolute;
+  top: 3px;
+  height: 253px;
+  width: 25px;
+}
+
+#uncutBlue {
+  background-image: url("img/uncut-blue-wire.png");
+  left: 2px;
+}
+
+/*#cutBlue {
+  background-image: url("img/cut-blue-wire.png");
+  left: 3px;
+}*/
+
+#uncutGreen {
+  background-image: url("img/uncut-green-wire.png");
+  left: 33px;
+}
+
+/*#cutGreen {
+  background-image: url("img/cut-green-wire.png");
+  left: 33px;
+}*/
+
+#uncutRed {
+  background-image: url("img/uncut-red-wire.png");
+  left: 63px;
+}
+
+/*#cutRed {
+  background-image: url("img/cut-red-wire.png");
+  left: 63px;
+}*/
+
+#uncutWhite {
+  background-image: url("img/uncut-white-wire.png");
+  left: 93px;
+}
+
+/*#cutWhite{
+  background-image: url("img/cut-white-wire.png");
+  left: 93px;
+}*/
+
+#uncutYellow {
+  background-image: url("img/uncut-yellow-wire.png");
+  left: 123px;
+}
+
+/*#cutYellow {
+  background-image: url("img/cut-yellow-wire.png");
+  left: 123px;
+}*/
+
+.reset {
+  width: 150px;
+  height: 20px;
+  position: absolute;
+  bottom: 15px;
+  left: 25px;
+}
