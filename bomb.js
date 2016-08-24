@@ -14,9 +14,6 @@ document.addEventListener("DOMContentLoaded", function() {
   // GAME START
   if (GAMESTATUS = true) {
     gameStart();
-  } else {
-    // RESTARTING GAME
-    document.getElementsbyClass("button").addEventListener("click", restartGame());
   }
 
   // FUNCTION TO START THE GAME
@@ -24,6 +21,19 @@ document.addEventListener("DOMContentLoaded", function() {
     pushWiresNeeded();
   }
 
+  // RESETING GAME
+  document.getElementById("reset").addEventListener("click", restartGame());
+
+  function restartGame() {
+    //RESET TIMER
+    document.getElementById("backImage").style.backgroundImage = "url('img/simcity.jpg')";
+    document.getElementById("yellow").style.backgroundImage = "url('img/uncut-yellow-wire.png')";
+    document.getElementById("blue").style.backgroundImage = "url('img/uncut-blue-wire.png')";
+    document.getElementById("white").style.backgroundImage = "url('img/uncut-white-wire.png')";
+    document.getElementById("red").style.backgroundImage = "url('img/uncut-red-wire.png')";
+    document.getElementById("green").style.backgroundImage = "url('img/uncut-green-wire.png')";
+    GAMESTATUS = true;
+  }
 
   // FOR LOOP TO DETERMINE ALL WIRES
   function pushWiresNeeded() {
@@ -83,48 +93,31 @@ document.addEventListener("DOMContentLoaded", function() {
     }
   }
 
-  // CHECKING EXPLOSION
-  // function checkExplosion() {
-  //   if(id !== runWiresNeeded()) {
-  //     CUTWIRES.push(id);
-  //
-  //     checkDefuse();
-  //
-  //   }
-  //   else {
-  //     runExplosion();
-  //   }
-  // }
-
   function runWiresNeeded() {
     for (x=0; x < WIRESNEEDED.length; x++) {
       return WIRESNEEDED[x];
     }
   }
 
-// EXPLOSION CODE
-  function runExplosion() {
-    document.getElementById("backImage").style.backgroundImage = "url('img/explosion.jpg')";
-    GAMESTATUS = false;
-    //STOP TIMER
-    //PREVENT WIRES FROM BEING CUT
-    //CHANGE BACKGROUND
-
-  }
-
 // CHECK DEFUSE
   function checkDefuse() {
+    var available = 0;
     if (compareArrays() === true) {
       bombDefused();
+    } else {
+      for(var m = 0; m<WIRESNEEDED.length; m++) {
+        if(WIRESNEEDED[m] === id) {
+          available = available + 1;
+          return available;
+        }
+      }
+      if (available === 0) {
+        runExplosion();
+      }
     }
-    // else {
-    //   checkExplosion();
-    // }
   }
 
   function compareArrays() {
-    // console.log("CUTWIRES:", CUTWIRES);
-    // console.log("WIRESNEEDED:", WIRESNEEDED);
     var sortedCUTWIRES = CUTWIRES.sort();
     var sortedWIRESNEEDED = WIRESNEEDED.sort();
 
@@ -149,15 +142,18 @@ document.addEventListener("DOMContentLoaded", function() {
     //   clickedWires();
     // }
 
-  function restartGame() {
-    //RESET TIMER
-    document.getElementById("backImage").style.backgroundImage = "url('img/simcity.jpg')";
-    document.getElementById("yellow").style.backgroundImage = "url('img/uncut-yellow-wire.png')";
-    document.getElementById("blue").style.backgroundImage = "url('img/uncut-blue-wire.png')";
-    document.getElementById("white").style.backgroundImage = "url('img/uncut-white-wire.png')";
-    document.getElementById("red").style.backgroundImage = "url('img/uncut-red-wire.png')";
-    document.getElementById("green").style.backgroundImage = "url('img/uncut-green-wire.png')";
-    GAMESTARUS = true;
+    // EXPLOSION CODE
+      function runExplosion() {
+        document.getElementById("backImage").style.backgroundImage = "url('img/explosion.jpg')";
+        GAMESTATUS = false;
+        //STOP TIMER
+        //PREVENT WIRES FROM BEING CUT
+        //CHANGE BACKGROUND
+
+      }
+
+  function warning() {
+    alert("You cannot restart the game yet!");
   }
 
 });
