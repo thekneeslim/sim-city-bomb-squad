@@ -9,14 +9,19 @@ var CUTWIRES = [];
 var WIRESNEEDED = [];
 var GAMESTATUS = true;
 var METALWIRES = document.getElementsByClassName("unCutWires");
+var id;
+var number = 0;
 
 // GAME START
 gameStart();
 
 // FUNCTION TO START THE GAME
 function gameStart() {
+  if (GAMESTATUS = true) {
   pushWiresNeeded();
-  clickedWires();
+  } else {
+    document.getElementsbyClass("button").addEventListener("click", restartGame);
+  }
 }
 
 
@@ -24,9 +29,11 @@ function gameStart() {
 function pushWiresNeeded() {
   for(var i =0; i < UNCUTWIRES.length; i++) {
     wiresRequiredToCut(UNCUTWIRES[i]);
-    // console.log(WIRESNEEDED);
   }
+  clickedWires();
 }
+console.log("Wires needed:", WIRESNEEDED);
+console.log("Wires needed length:", WIRESNEEDED.length);
 
 //DETERMINING WHICH WIRES TO BE CUT AND PUSHING INTO WIRESNEEDED
 function wiresRequiredToCut(y) {
@@ -39,7 +46,6 @@ function wiresRequiredToCut(y) {
 //IDENTIFYING WHICH WIRE WAS CLICKED
 function clickedWires() {
   for (var j = 0; j < UNCUTWIRES.length; j++) {
-    console.log(METALWIRES[j]);
     var METALWIRE = METALWIRES[j];
     METALWIRE.addEventListener("click", identifyWire);
   }
@@ -47,31 +53,58 @@ function clickedWires() {
 
 function identifyWire(e) {
   var METALWIRES = e.target;
-  console.log(METALWIRES);
   var id = METALWIRES.id;
 
-  console.log(id);
-
-  if (id === "uncutBlue") {
-      document.getElementById("uncutBlue").style.backgroundImage = "url('img/cut-blue-wire.png')";
+  if (id === "blue") {
+      document.getElementById("blue").style.backgroundImage = "url('img/cut-blue-wire.png')";
       console.log("Changing blue to cut");
 
-  }   else if (id === "uncutGreen") {
+  }   else if (id === "green") {
       console.log("Changing green to cut");
 
-      document.getElementById("uncutGreen").style.backgroundImage = "url('img/cut-green-wire.png')";
-  }  else if (id === "uncutRed") {
-      document.getElementById("uncutRed").style.backgroundImage = "url('img/cut-red-wire.png')";
+      document.getElementById("green").style.backgroundImage = "url('img/cut-green-wire.png')";
+  }  else if (id === "red") {
+      document.getElementById("red").style.backgroundImage = "url('img/cut-red-wire.png')";
       console.log("Changing red to cut");
 
-  } else if (id === "uncutWhite") {
-      document.getElementById("uncutWhite").style.backgroundImage = "url('img/cut-white-wire.png')";
+  } else if (id === "white") {
+      document.getElementById("white").style.backgroundImage = "url('img/cut-white-wire.png')";
       console.log("Changing white to cut");
 
-  } else if (id === "uncutYellow") {
-      document.getElementById("uncutYellow").style.backgroundImage = "url('img/cut-yellow-wire.png')";
+  } else if (id === "yellow") {
+      document.getElementById("yellow").style.backgroundImage = "url('img/cut-yellow-wire.png')";
       console.log("Changing yellow to cut");
   }
-  console.log(METALWIRES.textContent);
+  checkExplosion();
 }
 });
+
+
+// CHECKING EXPLOSION
+function checkExplosion() {
+  console.log(number);
+  for(var k = 0; k < number(number); k++) {
+    if(id !== WIRESNEEDED[k]) {
+      runExplosion();
+    } else {
+      z = WIRESNEEDED[k]
+      CUTWIRES.push(z);
+      checkDefuse();
+    }
+  }
+}
+
+function runExplosion() {
+
+}
+
+function checkDefuse() {
+  if (CUTWIRES === WIRESNEEDED) {
+    GAMESTATUS = FALSE
+    alert("YOU HAVE SUCCESSDULLY DEFUSED THE BOMB!!!");
+  }
+}
+
+function restartGame() {
+
+}

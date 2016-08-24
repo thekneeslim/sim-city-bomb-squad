@@ -37,7 +37,7 @@ body {
   width: 25px;
 }
 
-#uncutBlue {
+#blue {
   background-image: url("img/uncut-blue-wire.png");
   left: 2px;
 }
@@ -47,7 +47,7 @@ body {
   left: 3px;
 }*/
 
-#uncutGreen {
+#green {
   background-image: url("img/uncut-green-wire.png");
   left: 33px;
 }
@@ -57,7 +57,7 @@ body {
   left: 33px;
 }*/
 
-#uncutRed {
+#red {
   background-image: url("img/uncut-red-wire.png");
   left: 63px;
 }
@@ -67,7 +67,7 @@ body {
   left: 63px;
 }*/
 
-#uncutWhite {
+#white {
   background-image: url("img/uncut-white-wire.png");
   left: 93px;
 }
@@ -77,7 +77,7 @@ body {
   left: 93px;
 }*/
 
-#uncutYellow {
+#yellow {
   background-image: url("img/uncut-yellow-wire.png");
   left: 123px;
 }
