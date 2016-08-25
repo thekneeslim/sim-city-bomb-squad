@@ -3,7 +3,7 @@ console.log("javascript running");
 var UNCUTWIRES = ["blue", "green", "red", "white", "yellow"];
 var CUTWIRES = [];
 var WIRESNEEDED = [];
-var GAMESTATUS;
+var GAMESTATUS = true;
 var METALWIRES = document.getElementsByClassName("unCutWires");
 var id;
 
@@ -20,21 +20,28 @@ document.addEventListener("DOMContentLoaded", function() {
   }
 
   // RESETING GAME
-  // if(GAMESTATUS = true) {
-  //   document.getElementById("reset").addEventListener("click", warning());
+
+
+  // if(GAMESTATUS === true) {
+    document.getElementById("reset").addEventListener("click", restartGame);
   // } else {
-    document.getElementById("reset").addEventListener("click", restartGame());
+  //   document.getElementById("reset").addEventListener("click", restartGame);
   // }
 
   function restartGame() {
     //RESET TIMER
-    document.getElementById("backImage").style.backgroundImage = "url('img/simcity.jpg')";
-    document.getElementById("yellow").style.backgroundImage = "url('img/uncut-yellow-wire.png')";
-    document.getElementById("blue").style.backgroundImage = "url('img/uncut-blue-wire.png')";
-    document.getElementById("white").style.backgroundImage = "url('img/uncut-white-wire.png')";
-    document.getElementById("red").style.backgroundImage = "url('img/uncut-red-wire.png')";
-    document.getElementById("green").style.backgroundImage = "url('img/uncut-green-wire.png')";
-    GAMESTATUS = true;
+    if (GAMESTATUS === false) {
+      document.getElementById("backImage").style.backgroundImage = "url('img/simcity.jpg')";
+      document.getElementById("yellow").style.backgroundImage = "url('img/uncut-yellow-wire.png')";
+      document.getElementById("blue").style.backgroundImage = "url('img/uncut-blue-wire.png')";
+      document.getElementById("white").style.backgroundImage = "url('img/uncut-white-wire.png')";
+      document.getElementById("red").style.backgroundImage = "url('img/uncut-red-wire.png')";
+      document.getElementById("green").style.backgroundImage = "url('img/uncut-green-wire.png')";
+      GAMESTATUS = true;
+
+    } else if (GAMESTATUS === true) {
+      warning()
+    }
   }
 
   // FOR LOOP TO DETERMINE ALL WIRES
@@ -66,7 +73,7 @@ document.addEventListener("DOMContentLoaded", function() {
   }
 
   function identifyWire(e) {
-    if (GAMESTATUS = true) {
+    if (GAMESTATUS === true) {
       var METALWIRES = e.target;
       id = METALWIRES.id;
       if (id === "blue") {
@@ -142,13 +149,13 @@ document.addEventListener("DOMContentLoaded", function() {
     alert("YOU HAVE SUCCESSDULLY DEFUSED THE BOMB!!!");
   }
 
-    // EXPLOSION CODE
-      function runExplosion() {
-        document.getElementById("backImage").style.backgroundImage = "url('img/explosion.jpg')";
-        GAMESTATUS = false;
-        clearInterval(interval);
-        //PREVENT WIRES FROM BEING CUT
-      }
+// EXPLOSION CODE
+  function runExplosion() {
+    document.getElementById("backImage").style.backgroundImage = "url('img/explosion.jpg')";
+    GAMESTATUS = false;
+    clearInterval(interval);
+    //PREVENT WIRES FROM BEING CUT
+  }
 // WARNING MESSAGE
   function warning() {
     alert("You cannot restart the game yet!");
