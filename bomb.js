@@ -10,8 +10,8 @@ var id;
 document.addEventListener("DOMContentLoaded", function() {
   console.log("DOM loaded");
 
+  document.getElementById("reset").addEventListener("click", restartGame);
 
-  // GAME START
   gameStart()
 
   function gameStart() {
@@ -19,16 +19,8 @@ document.addEventListener("DOMContentLoaded", function() {
     clock();
   }
 
-  // RESETING GAME
-
-
-  // if(GAMESTATUS === true) {
-    document.getElementById("reset").addEventListener("click", restartGame);
-  // } else {
-  //   document.getElementById("reset").addEventListener("click", restartGame);
-  // }
-
   function restartGame() {
+
     //RESET TIMER
     if (GAMESTATUS === false) {
       document.getElementById("backImage").style.backgroundImage = "url('img/simcity.jpg')";
@@ -37,10 +29,25 @@ document.addEventListener("DOMContentLoaded", function() {
       document.getElementById("white").style.backgroundImage = "url('img/uncut-white-wire.png')";
       document.getElementById("red").style.backgroundImage = "url('img/uncut-red-wire.png')";
       document.getElementById("green").style.backgroundImage = "url('img/uncut-green-wire.png')";
+      document.getElementById("timer").style.color = "red";
+      clearArrays();
+      // clearTimeout(runExplosion);
       GAMESTATUS = true;
+      console.log(CUTWIRES);
+      gameStart()
 
     } else if (GAMESTATUS === true) {
       warning()
+    }
+  }
+
+  // CLEAR ALL ELEMENTS IN CUTWIRES & WIRESNEEDED ARRAY
+  function clearArrays () {
+    for(var x = 0; x<= CUTWIRES.length; x++) {
+      CUTWIRES.pop(x);
+    }
+    for(var x = 0; x<= WIRESNEEDED.length; x++) {
+      WIRESNEEDED.pop(x);
     }
   }
 
@@ -51,10 +58,10 @@ document.addEventListener("DOMContentLoaded", function() {
       wiresRequiredToCut(UNCUTWIRES[i]);
       clickedWires();
     }
+    console.log("Wires needed:", WIRESNEEDED);
+    console.log("Wires needed length:", WIRESNEEDED.length);
+    console.log("Clicked wires:", clickedWires);
   }
-
-  console.log("Wires needed:", WIRESNEEDED);
-  console.log("Wires needed length:", WIRESNEEDED.length);
 
   //DETERMINING WHICH WIRES TO BE CUT AND PUSHING INTO WIRESNEEDED
   function wiresRequiredToCut(y) {
@@ -121,7 +128,8 @@ document.addEventListener("DOMContentLoaded", function() {
         }
       }
       if (available === 0) {
-        setTimeout(runExplosion(), 750);
+        // runExplosion()
+        setTimeout(runExplosion, 750);
       }
     }
   }
@@ -145,6 +153,7 @@ document.addEventListener("DOMContentLoaded", function() {
   function bombDefused() {
     document.getElementById("timer").style.color = "green";
     GAMESTATUS = false;
+    clearTimeout(runExplosion);
     clearInterval(interval);
     alert("YOU HAVE SUCCESSDULLY DEFUSED THE BOMB!!!");
   }
@@ -154,7 +163,7 @@ document.addEventListener("DOMContentLoaded", function() {
     document.getElementById("backImage").style.backgroundImage = "url('img/explosion.jpg')";
     GAMESTATUS = false;
     clearInterval(interval);
-    //PREVENT WIRES FROM BEING CUT
+    clearTimeout(runExplosion);
   }
 // WARNING MESSAGE
   function warning() {
@@ -179,7 +188,7 @@ function countDown(d3,d2,d1,d0){
 
  function count(){
    if((d3===0 && d2===0 && d1===0 && d0===0)) {
-     setTimeout(runExplosion(), 750);
+     runExplosion();
    } else {
       if(d0>0) {
           d0--;
